@@ -30,7 +30,7 @@ export function TransactionTable(){
                     <tr>
                         <td>Hamburguer</td>
                         <td className="withdrawn">R$- R$ 59,00</td>
-                        <td>Alimenmtação</td>
+                        <td>Alimentação</td>
                         <td>10/04/2021</td>
                     </tr>
                     <tr>
