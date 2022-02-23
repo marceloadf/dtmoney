@@ -15,7 +15,7 @@ export const GlobalStyle = createGlobalStyle`
         --input-background: #E7E9EE
     }
 
-    *{
+    * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -24,7 +24,7 @@ export const GlobalStyle = createGlobalStyle`
     //font-size: 16px (Desktop)
     //hack para usar os tamanhos com REM = 1font ao invés de px para redimensionar
     //os tamanhos dos objetos de acordo com o tamanho máximo de tela definido logo a baixo.
-    html{
+    html {
         @media (max-width: 1080px) {
             font-size: 93.75%; //15px
         }
@@ -34,30 +34,30 @@ export const GlobalStyle = createGlobalStyle`
         }
     }
 
-    body{
+    body {
         background: var(--background);
         -webkit-font-smoothing: antialiased;
     }
 
-    body, input, textarea, button{ //input, textarea e button poussem seus propios tamanhos de font, por isso eles não herdam do body
+    body, input, textarea, button { //input, textarea e button poussem seus propios tamanhos de font, por isso eles não herdam do body
         font-family: 'Poppins', sans-serif;
         font-weight: 400;
     }
 
-    h1, h2, h3, h4, h5, h6, strong{
+    h1, h2, h3, h4, h5, h6, strong {
         font-weight: 600;
     }
 
-    button{
+    button { 
         cursor: pointer;
     }
 
-    [disabled]{
+    [disabled] {
         opacity: 0.6;
         cursor: not-allowed;
     }
 
-    .modal-class{
+    .modal-class {
         width: 100%;
         max-width: 576px;
 
@@ -67,7 +67,7 @@ export const GlobalStyle = createGlobalStyle`
         border-radius: 0.25rem;
 
     }
-    .modal-overlay{
+    .modal-overlay {
         background: rgba(0, 0, 0, 0.5);
         
         position: fixed;
@@ -79,6 +79,20 @@ export const GlobalStyle = createGlobalStyle`
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    .react-modal-close {
+        position: absolute;
+        border: 0;
+        right: 1.5rem;
+        top: 1.5rem;
+        background: transparent;
+
+        transition: filter 0.2s;
+
+        &:hover {
+            filter: brightness(0.8);
+        }
     }
 
 `
