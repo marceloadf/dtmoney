@@ -1,8 +1,9 @@
 import Modal from 'react-modal';
-import { Container, TransactionTypeContainer } from './styles';
+import { Container, TransactionButton, TransactionTypeContainer } from './styles';
 import closeButtonImg from '../../assets/close.svg';
 import incomeImg from '../../assets/incomes.svg';
 import outcomeImg from '../../assets/outcomes.svg';
+import { useState } from 'react';
 
 interface NewTransactionModalProps{
     modalIsOpen: boolean;
@@ -10,6 +11,9 @@ interface NewTransactionModalProps{
 }
 
 export function NewTransactionModal( {modalIsOpen, closeModal} : NewTransactionModalProps) {
+
+    const [transactionType, setTransactionType] = useState('deposit');
+
     return (
         <Modal
             isOpen={modalIsOpen}
@@ -32,14 +36,25 @@ export function NewTransactionModal( {modalIsOpen, closeModal} : NewTransactionM
                 <input placeholder='Valor' type='number'/>
 
                 <TransactionTypeContainer>
-                    <button type="button">
+
+                    <TransactionButton 
+                        type="button" 
+                        onClick={() => setTransactionType("deposit")}
+                        isActive={transactionType === "deposit" ? true : false}
+                    >  
                         <img src={incomeImg} alt="Entrada" />
                         <span>Entrada</span>
-                    </button> 
-                    <button type="button">
+                    </TransactionButton> 
+
+                    <TransactionButton 
+                        type="button" 
+                        isActive={transactionType === "withdraw" ? true : false}
+                        onClick={() => setTransactionType("withdraw")}
+                    >
                         <img src={outcomeImg} alt="Saída" />
                         <span>Saída</span>
-                    </button> 
+                    </TransactionButton> 
+
                 </TransactionTypeContainer>
 
                 <input placeholder='Categoria'/>
@@ -47,6 +62,7 @@ export function NewTransactionModal( {modalIsOpen, closeModal} : NewTransactionM
                 <button type='submit'>
                     Cadastrar
                 </button>
+
            </Container>
         </Modal>
     );
