@@ -3,7 +3,7 @@ import { Container, TransactionButton, TransactionTypeContainer } from './styles
 import closeButtonImg from '../../assets/close.svg';
 import incomeImg from '../../assets/incomes.svg';
 import outcomeImg from '../../assets/outcomes.svg';
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 
 interface NewTransactionModalProps{
     modalIsOpen: boolean;
@@ -11,8 +11,14 @@ interface NewTransactionModalProps{
 }
 
 export function NewTransactionModal( {modalIsOpen, closeModal} : NewTransactionModalProps) {
-
     const [transactionType, setTransactionType] = useState('deposit');
+    const [title, setTitle] = useState('');
+    const [value, setValue] = useState(0);
+    const [category, setCategory] = useState('');
+
+    function handleFormSubmit(event: FormEvent) {
+        event.preventDefault();
+    };
 
     return (
         <Modal
@@ -30,10 +36,22 @@ export function NewTransactionModal( {modalIsOpen, closeModal} : NewTransactionM
                 <img src={closeButtonImg} alt="Fechar Modal" />
             </button>
 
-           <Container>
+           <Container onSubmit={handleFormSubmit}>
+
                 <h2>Cadastrar Transaão</h2>
-                <input placeholder='Título'/>
-                <input placeholder='Valor' type='number'/>
+
+                <input 
+                    placeholder='Título' 
+                    value={title} 
+                    onChange={(e) => setTitle(e.target.value)}
+                />
+
+                <input 
+                    placeholder='Valor' 
+                    type='number' 
+                    value={value}
+                    onChange={(e) => setValue(Number(e.target.value))}
+                />
 
                 <TransactionTypeContainer>
 
@@ -59,13 +77,18 @@ export function NewTransactionModal( {modalIsOpen, closeModal} : NewTransactionM
 
                 </TransactionTypeContainer>
 
-                <input placeholder='Categoria'/>
+                <input 
+                    placeholder='Categoria' 
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                />
 
                 <button type='submit'>
                     Cadastrar
                 </button>
 
            </Container>
+           
         </Modal>
     );
 }
