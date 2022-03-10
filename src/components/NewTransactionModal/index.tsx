@@ -25,7 +25,7 @@ export function NewTransactionModal( {modalIsOpen, closeModal} : NewTransactionM
             value,
             category
         };
-        
+        console.log(data);
         api.post("/transactions", data);
     };
 
