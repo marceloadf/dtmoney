@@ -4,6 +4,7 @@ import { GlobalStyle } from "./styles/global";
 import Modal from 'react-modal';
 import { useState } from "react";
 import { NewTransactionModal } from "./components/NewTransactionModal";
+import { TransactionsProvider } from "./TransactionsContext";
 
 Modal.setAppElement('#root');
 
@@ -17,12 +18,21 @@ export function App() {
   function closeModal() {
       setModalIsOpen(false);
   }
+
   return (
-    <>
+    <TransactionsProvider>
+
       <Header openNewTransactionalModal={openNewTransactionalModal}/>
+
       <Dashboard />
-      <NewTransactionModal closeModal={closeModal} modalIsOpen={modalIsOpen}/>
+
+      <NewTransactionModal 
+        closeModal={closeModal} 
+        modalIsOpen={modalIsOpen}
+      />
+
       <GlobalStyle />
-    </>
+
+    </TransactionsProvider>
   )
 }
