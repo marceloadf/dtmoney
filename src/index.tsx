@@ -16,16 +16,16 @@ createServer({
           id: 1,
           title: 'Salário ACT Digital',
           type: 'deposit',
+          amount: 22000,
           category: 'Salário',
-          value: 9000,
           createdAt: new Date('2021-03-15 09:00:00'),
         },
         {
           id: 2,
           title: 'Aluguel',
           type: 'withdraw',
+          amount: 3000,
           category: 'Despesas fixas',
-          value: 3000,
           createdAt: new Date('2021-03-31 12:00:00'),
         }
       ]
