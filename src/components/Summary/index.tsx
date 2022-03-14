@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import incomeImg from '../../assets/incomes.svg'
 import outcomeImg from '../../assets/outcomes.svg'
 import total from '../../assets/total.svg'
@@ -6,39 +6,26 @@ import { TransactionsContext } from '../../TransactionsContext'
 
 import { Container } from "./styles"
 
-export function Summary(){
-
-    const [incomeSummary, setIncomeSummary] = useState(0);
-    const [withdrawnSummary, setWithdrawnSummary] = useState(0);
-    const [diffSummary, setDiffSummary] = useState(0)
+export function Summary() {
 
     const { transactions } = useContext(TransactionsContext);
 
-    useEffect(() => {
-        var incomeTotal = transactions.reduce((acumulator, actualTransaction) => {
+    const summary = transactions.reduce((acc, transaction) => {
 
-            if(actualTransaction.type === 'deposit')
-                return acumulator += actualTransaction.amount;
+        if(transaction.type === 'deposit') {
+            acc.deposit += transaction.amount;
+        } else {
+            acc.withdraw += transaction.amount;
+        }
 
-            return acumulator;
-        }, 0);
-    
-        setIncomeSummary(incomeTotal);
+        acc.total = acc.deposit - acc.withdraw;
 
-        var withdrawnTotal = transactions.reduce((acumulator, actualTransaction) => {
-
-            if(actualTransaction.type === 'withdrawn')
-                return acumulator += actualTransaction.amount;
-                
-            return acumulator;
-        }, 0);
-    
-        setWithdrawnSummary(withdrawnTotal);
-
-        setDiffSummary(incomeTotal - withdrawnTotal);
-
-    }, [transactions])
-
+        return acc;
+    }, {
+        deposit: 0,
+        withdraw: 0,
+        total: 0
+    })
 
     return(
         <Container>
@@ -54,7 +41,7 @@ export function Summary(){
                     {new Intl.NumberFormat('pt-BR', {
                                 style: 'currency',
                                 currency: 'BRL'
-                                }).format(incomeSummary)}
+                                }).format(summary.deposit)}
                 </strong>
 
             </div>
@@ -70,7 +57,7 @@ export function Summary(){
                     {new Intl.NumberFormat('pt-BR', {
                                 style: 'currency',
                                 currency: 'BRL'
-                                }).format(withdrawnSummary)}
+                                }).format(summary.withdraw)}
                 </strong>
 
             </div>
@@ -86,7 +73,7 @@ export function Summary(){
                     {new Intl.NumberFormat('pt-BR', {
                                 style: 'currency',
                                 currency: 'BRL'
-                                }).format(diffSummary)}
+                                }).format(summary.total)}
                 </strong>
 
             </div>

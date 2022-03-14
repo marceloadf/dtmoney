@@ -84,8 +84,8 @@ export function NewTransactionModal( {modalIsOpen, closeModal} : NewTransactionM
 
                     <TransactionButton 
                         type="button" 
-                        isActive={type === "withdraw" ? true : false}
-                        onClick={() => setType("withdraw")}
+                        isActive={type === "withdrawn" ? true : false}
+                        onClick={() => setType("withdrawn")}
                         activeColor="red"
                     >
                         <img src={outcomeImg} alt="Saída" />
