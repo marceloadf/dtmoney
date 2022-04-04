@@ -3,8 +3,8 @@ import { Container, TransactionButton, TransactionTypeContainer } from './styles
 import closeButtonImg from '../../assets/close.svg';
 import incomeImg from '../../assets/incomes.svg';
 import outcomeImg from '../../assets/outcomes.svg';
-import { useState, FormEvent, useContext } from 'react';
-import { TransactionsContext } from '../../TransactionsContext';
+import { useState, FormEvent } from 'react';
+import { useTransactions } from '../../hooks/useTransactions';
 
 interface NewTransactionModalProps{
     modalIsOpen: boolean;
@@ -17,7 +17,7 @@ export function NewTransactionModal( {modalIsOpen, closeModal} : NewTransactionM
     const [amount, setAmount] = useState(0);
     const [category, setCategory] = useState('');
     
-    const { createNewTransaction } = useContext(TransactionsContext);
+    const { createNewTransaction } = useTransactions();
 
     async function handleFormSubmit(event: FormEvent) {
         event.preventDefault();
