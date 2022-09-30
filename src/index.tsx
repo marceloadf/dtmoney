@@ -14,9 +14,9 @@ createServer({
       transactions: [
         {
           id: 1,
-          title: 'Salário ACT Digital',
+          title: 'Salário',
           type: 'deposit',
-          amount: 9000,
+          amount: 12000,
           category: 'Salário',
           createdAt: new Date('2021-03-15 09:00:00'),
         },

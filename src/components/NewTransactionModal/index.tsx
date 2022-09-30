@@ -55,7 +55,7 @@ export function NewTransactionModal( {modalIsOpen, closeModal} : NewTransactionM
 
            <Container onSubmit={handleFormSubmit}>
 
-                <h2>Cadastrar Transaão</h2>
+                <h2>Cadastrar Transação</h2>
 
                 <input 
                     placeholder='Título' 
@@ -68,6 +68,8 @@ export function NewTransactionModal( {modalIsOpen, closeModal} : NewTransactionM
                     type='number' 
                     value={amount}
                     onChange={(e) => setAmount(Number(e.target.value))}
+                    min="0.1"
+                    step="0.1"
                 />
 
                 <TransactionTypeContainer>
